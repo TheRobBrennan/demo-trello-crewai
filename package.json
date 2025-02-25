@@ -13,6 +13,14 @@
   "license": "MIT",
   "author": "Rob Brennan <rob@sploosh.ai>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:workflows",
+    "test:workflows": "chmod +x .github/test-workflows.sh && .github/test-workflows.sh",
+    "test:workflows:semantic": "act pull_request -e .github/test-data/pr-events/minor.json -W .github/workflows/semantic-pr-check.yml",
+    "test:workflows:semantic:major": "act pull_request -e .github/test-data/pr-events/major.json -W .github/workflows/semantic-pr-check.yml",
+    "test:workflows:semantic:minor": "act pull_request -e .github/test-data/pr-events/minor.json -W .github/workflows/semantic-pr-check.yml",
+    "test:workflows:semantic:patch": "act pull_request -e .github/test-data/pr-events/patch.json -W .github/workflows/semantic-pr-check.yml",
+    "test:workflows:semantic:invalid": "act pull_request -e .github/test-data/pr-events/invalid.json -W .github/workflows/semantic-pr-check.yml",
+    "test:workflows:version": "act workflow_dispatch -W .github/workflows/version-bump.yml --container-architecture linux/amd64",
+    "test:workflows:merge": "act push -e .github/test-data/pr-events/merge.json -W .github/workflows/main-merge.yml --container-architecture linux/amd64"
   }
 }
