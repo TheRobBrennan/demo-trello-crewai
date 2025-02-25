@@ -1,0 +1,18 @@
+{
+  "name": "demo-trello-crewai",
+  "version": "0.0.0",
+  "description": "This example was originally developed by [Brandon Hancock](https://github.com/bhancockio) as part of our AI Developer Accelerator group in the [noob-vs-pro-tools](https://github.com/bhancockio/noob-vs-pro-tools) repo on GitHub.",
+  "homepage": "https://github.com/TheRobBrennan/demo-trello-crewai#readme",
+  "bugs": {
+    "url": "https://github.com/TheRobBrennan/demo-trello-crewai/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheRobBrennan/demo-trello-crewai.git"
+  },
+  "license": "MIT",
+  "author": "Rob Brennan <rob@sploosh.ai>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
