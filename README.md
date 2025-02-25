@@ -50,3 +50,42 @@ This example, unmodified, will run the create a `report.md` file with the output
 - <https://www.merge.dev/blog/trello-api-key>
 - <https://developer.atlassian.com/cloud/trello/rest/api-group-boards/#api-boards-id-lists-get>
 - <https://docs.tavily.com/docs/python-sdk/tavily-search/getting-started>
+
+## Testing GitHub Actions Locally
+
+We recommend using [act](https://github.com/nektos/act) to test GitHub Actions workflows locally before pushing changes if you are developing on a Mac.
+
+Prerequisites for macOS:
+
+- Homebrew
+- Docker Desktop (must be running)
+
+```sh
+# Install act using Homebrew
+brew install act
+
+# Verify installation
+act --version # Should show 0.2.74 or higher
+```
+
+### Running Tests
+
+The following test scripts are available:
+
+```bash
+# Run all workflow tests
+npm run test:workflows
+
+# Test semantic PR checks
+npm run test:workflows:semantic
+npm run test:workflows:semantic:major
+npm run test:workflows:semantic:minor
+npm run test:workflows:semantic:patch
+npm run test:workflows:semantic:invalid
+
+# Test version bump workflow
+npm run test:workflows:version
+
+# Test merge workflow
+npm run test:workflows:merge
+```
