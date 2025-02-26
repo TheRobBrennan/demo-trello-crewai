@@ -24,13 +24,46 @@ class ProTools:
         inputs = inputs or {}
         trello_utils = TrelloUtils()
 
+        print("\nStarting to prepare inputs...")
+        
+        # Get board ID
+        board_id = os.getenv("TRELLO_BOARD_ID")
+        if board_id is None:
+            raise ValueError("Environment variable 'TRELLO_BOARD_ID' is not set.")
+            
+        # Verify board access and get lists
+        print("\nVerifying board access...")
+        board_details = trello_utils.verify_board_access(board_id)
+        
+        # Get TODO list ID
         trello_todo_list_id = os.getenv("TRELLO_TOOD_LIST_ID")
         if trello_todo_list_id is None:
             raise ValueError("Environment variable 'TRELLO_TOOD_LIST_ID' is not set.")
-
+            
+        # Verify list exists in board
+        if 'lists' in board_details:
+            list_ids = [lst.get('id') for lst in board_details['lists']]
+            if trello_todo_list_id not in list_ids:
+                raise ValueError(f"List ID {trello_todo_list_id} not found in board {board_id}")
+            
+        print(f"\nVerifying list exists...")
+        list_details = trello_utils.verify_list(trello_todo_list_id)
+        if isinstance(list_details, str) and list_details.startswith("Error"):
+            raise ValueError(f"Invalid list ID: {list_details}")
+            
+        print(f"\nFetching cards from list ID: {trello_todo_list_id}")
         cards = trello_utils.get_cards_in_list(trello_todo_list_id)
-
+        print(f"Retrieved cards: {cards}")
+        
+        if isinstance(cards, str) and cards.startswith("Error"):
+            raise ValueError(f"Failed to fetch cards: {cards}")
+            
+        if not cards:
+            print("No cards found in the TODO list.")
+            return inputs
+            
         inputs["trello_cards"] = cards
+        print(f"\nFinal inputs prepared: {inputs}")
         return inputs
 
     # Define agents
