@@ -33,21 +33,32 @@ The application uses Trello to manage the workflow of researching and writing ab
 
 ## Step 2: Getting Your Trello API Credentials
 
-To allow the application to interact with your Trello board, you'll need to obtain API credentials:
+To allow the application to interact with your Trello board, you'll need to obtain API credentials through Trello's Power-Up system:
 
-1. **Get Your Trello API Key**:
-   - Visit [https://trello.com/app-key](https://trello.com/app-key)
-   - Log in if prompted
-   - You'll see your API Key displayed on the page
-   - Copy this key for later use
+1. **Create a Trello Power-Up**:
+   - Visit [https://trello.com/power-ups/admin/](https://trello.com/power-ups/admin/)
+   - Click "New" or "Create New Power-Up"
+   - Fill in the required fields:
+     - Name: "ProTools Integration" (or any name you prefer)
+     - Contact Email: Your email address
+     - Author: Your name
+     - Overview: "Integration for ProTools Crew application"
+     - For other fields, you can use placeholder information
+   - Save the Power-Up
 
-2. **Generate a Token**:
-   - On the same page, click the "Token" link
+2. **Get Your API Key**:
+   - After creating the Power-Up, you'll be taken to its settings page
+   - Look for the "API Key" field - this is your Trello API Key
+   - Copy this key for later use in your `.env` file
+
+3. **Generate a Token**:
+   - Using your API Key, visit the following URL (replace YOUR_API_KEY with your actual API key):
+     `https://trello.com/1/authorize?expiration=never&scope=read,write&response_type=token&name=ProTools%20Integration&key=YOUR_API_KEY`
    - You'll be asked to authorize the token generation
    - Grant permission to your account
-   - Copy the generated token for later use
+   - Copy the generated token for later use in your `.env` file
 
-3. **Get Your Board and List IDs**:
+4. **Get Your Board and List IDs**:
    - Open your Trello board in the browser
    - The URL will look like: `https://trello.com/b/XXXXXXXX/board-name`
    - The part after `/b/` and before `/board-name` is your short board ID (e.g., `XXXXXXXX`)
@@ -111,7 +122,7 @@ Now that you have all the necessary credentials, let's set up the application:
 3. **Edit the `.env` File**:
    Open the `.env` file in your favorite text editor and add your API keys and Trello information:
 
-   ```
+   ```shell
    MODEL=gpt-4o
    
    # Add your OpenAI API key below

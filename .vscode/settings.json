@@ -9,6 +9,7 @@
         "asgi",
         "asgiref",
         "asttokens",
+        "ATTA",
         "authlib",
         "beautifulsoup",
         "cachetools",
