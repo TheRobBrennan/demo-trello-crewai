@@ -8,6 +8,8 @@ This example was originally developed by [Brandon Hancock](https://github.com/bh
 
 ## Installation
 
+### Option 1: Local Installation
+
 Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
 
 First, if you haven't already, install uv:
@@ -24,6 +26,41 @@ Next, navigate to your project directory and install the dependencies:
 crewai install
 ```
 
+### Option 2: Docker Installation (Recommended)
+
+This project can be run entirely in Docker without installing any dependencies locally. You only need:
+
+- Docker Desktop (for macOS)
+- A `.env` file with your API keys
+
+To get started:
+
+1. Set up your environment file:
+
+   ```bash
+   npm run setup
+   ```
+
+   This will create a `.env` file from the `.env.example` template.
+
+2. Edit the `.env` file to add your API keys and configuration.
+
+3. Verify your environment configuration:
+
+   ```bash
+   npm run check
+   ```
+
+   This will check if all required environment variables are set.
+
+4. Run the application:
+
+   ```bash
+   npm start
+   ```
+
+The Docker setup will automatically check for required environment variables and provide helpful error messages if any are missing.
+
 ### Customizing
 
 **Add your `OPENAI_API_KEY` into the `.env` file**
@@ -34,6 +71,33 @@ crewai install
 - Modify `src/pro_tools/main.py` to add custom inputs for your agents and tasks
 
 ## Running the Project
+
+### Using Docker (Recommended)
+
+```bash
+# Set up your environment file
+npm run setup
+
+# Check if your environment is properly configured
+npm run check
+
+# Start the application
+npm start
+
+# Start in detached mode (run in background)
+npm run start:detached
+
+# Force rebuild the Docker image
+npm run start:build
+
+# Run training with Docker
+npm run start:train
+
+# Replay a specific task with Docker
+npm run start:replay
+```
+
+### Using Local Python
 
 To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
 
