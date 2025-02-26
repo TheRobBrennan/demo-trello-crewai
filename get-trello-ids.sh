@@ -58,10 +58,17 @@ if [[ $LISTS_RESPONSE == *"\"error\""* ]]; then
 fi
 
 echo "Lists on your board:"
-echo "$LISTS_RESPONSE" | grep -o '"name":"[^"]*","id":"[^"]*"' | while read -r line; do
-  NAME=$(echo "$line" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
-  ID=$(echo "$line" | grep -o '"id":"[^"]*"' | cut -d'"' -f4)
-  echo "- $NAME: $ID"
+
+# Use a more reliable method to parse the JSON response
+# This extracts each list object and processes them one by one
+echo "$LISTS_RESPONSE" | sed 's/\[{/\n{/g' | sed 's/},{/\n{/g' | sed 's/}]/\n}/g' | while read -r list_obj; do
+  if [[ -n "$list_obj" && "$list_obj" != "]" ]]; then
+    NAME=$(echo "$list_obj" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
+    ID=$(echo "$list_obj" | grep -o '"id":"[^"]*"' | cut -d'"' -f4)
+    if [[ -n "$NAME" && -n "$ID" ]]; then
+      echo "- $NAME: $ID"
+    fi
+  fi
 done
 
 echo ""
