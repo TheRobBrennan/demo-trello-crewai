@@ -8,7 +8,7 @@ Before you begin, you'll need:
 
 - Docker Desktop installed on your machine
 - A Trello account
-- A Tavily API key
+- A SerpApi API key
 - An OpenAI API key
 
 ## Step 1: Setting Up Your Trello Board
@@ -74,17 +74,17 @@ To allow the application to interact with your Trello board, you'll need to obta
      - List all the lists on your board with their IDs
      - Provide instructions for adding these IDs to your `.env` file
 
-## Step 3: Getting Your Tavily API Key
+## Step 3: Getting Your SerpApi API Key
 
-The application uses Tavily for research capabilities:
+The application uses SerpApi for research capabilities:
 
-1. **Sign Up for Tavily**:
-   - Visit [https://tavily.com/](https://tavily.com/)
+1. **Sign Up for SerpApi**:
+   - Visit [https://serpapi.com/](https://serpapi.com/)
    - Sign up for an account
    - Navigate to the API section or dashboard
 
 2. **Generate an API Key**:
-   - Follow Tavily's instructions to generate an API key
+   - Follow SerpApi's instructions to generate an API key
    - Copy this key for later use
 
 ## Step 4: Getting Your OpenAI API Key
@@ -138,8 +138,8 @@ Now that you have all the necessary credentials, let's set up the application:
    TRELLO_TOOD_LIST_ID=your_todo_list_id_here
    TRELLO_DOING_LIST_ID=your_doing_list_id_here
    
-   # Add your Tavily API key below
-   TAVILY_API_KEY=your_tavily_api_key_here
+   # Add your SerpApi API key below
+   SERPAPI_API_KEY=your_serpapi_api_key_here
    ```
 
 4. **Get Trello Board and List IDs**:
@@ -195,7 +195,7 @@ If you encounter issues:
    - Try rebuilding the container with `npm run start:build`
 
 3. **API Limits**:
-   - Check if you've hit rate limits on OpenAI or Tavily
+   - Check if you've hit rate limits on OpenAI or SerpApi
    - Consider upgrading your API plans if needed
 
 4. **Trello Permissions**:
