@@ -16,8 +16,23 @@ from pro_tools.utils.trello_utils import TrelloUtils
 class ProTools:
     """ProTools crew"""
 
-    agents_config = "config/agents.yaml"
-    tasks_config = "config/tasks.yaml"
+    def __init__(self):
+        # Get the directory containing this file
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Set config paths relative to this file
+        self.agents_config = os.path.join(base_dir, "config", "agents.yaml")
+        self.tasks_config = os.path.join(base_dir, "config", "tasks.yaml")
+        
+        # Verify config files exist
+        if not os.path.exists(self.agents_config):
+            raise ValueError(f"Agents config file not found: {self.agents_config}")
+        if not os.path.exists(self.tasks_config):
+            raise ValueError(f"Tasks config file not found: {self.tasks_config}")
+            
+        print(f"\nUsing config files:")
+        print(f"Agents config: {self.agents_config}")
+        print(f"Tasks config: {self.tasks_config}")
 
     @before_kickoff
     def prepare_inputs(self, inputs: Dict[str, Any]):
@@ -135,9 +150,30 @@ class ProTools:
     @crew
     def crew(self) -> Crew:
         """Creates the ProTools crew"""
+        print("\nInitializing agents...")
+        try:
+            agents = self.agents
+            print(f"Created {len(agents)} agents successfully")
+            for agent in agents:
+                print(f"- {agent.role}")
+        except Exception as e:
+            print(f"Error creating agents: {e}")
+            raise
+            
+        print("\nInitializing tasks...")
+        try:
+            tasks = self.tasks
+            print(f"Created {len(tasks)} tasks successfully")
+            for task in tasks:
+                print(f"- {task.description[:50]}...")
+        except Exception as e:
+            print(f"Error creating tasks: {e}")
+            raise
+            
+        print("\nCreating crew...")
         return Crew(
-            agents=self.agents,
-            tasks=self.tasks,
+            agents=agents,
+            tasks=tasks,
             process=Process.sequential,
             verbose=True,
         )
