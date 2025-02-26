@@ -122,7 +122,7 @@ This example, unmodified, will run the create a `report.md` file with the output
 
 - <https://www.merge.dev/blog/trello-api-key>
 - <https://developer.atlassian.com/cloud/trello/rest/api-group-boards/#api-boards-id-lists-get>
-- <https://docs.tavily.com/docs/python-sdk/tavily-search/getting-started>
+- <https://serpapi.com/docs/google-search-api>
 
 ## Testing GitHub Actions Locally
 

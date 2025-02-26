@@ -6,7 +6,7 @@ from crewai.project import CrewBase, agent, before_kickoff, crew, task
 
 from pro_tools.models.article import Article
 from pro_tools.models.research import Research
-from pro_tools.tools.RedditSearchTool import RedditTavilySearchTool
+from pro_tools.tools.RedditSearchTool import RedditSerpApiSearchTool
 from pro_tools.tools.TrelloAddCardCommentTool import TrelloAddCardCommentTool
 from pro_tools.tools.TrelloUpdateCardTool import TrelloUpdateCardTool
 from pro_tools.utils.trello_utils import TrelloUtils
@@ -90,7 +90,7 @@ class ProTools:
         """
         return Agent(
             config=self.agents_config["researcher"],
-            tools=[RedditTavilySearchTool()],
+            tools=[RedditSerpApiSearchTool()],
             verbose=True,
         )
 

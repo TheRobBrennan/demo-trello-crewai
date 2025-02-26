@@ -12,7 +12,7 @@ REQUIRED_VARS=(
   "TRELLO_BOARD_ID"
   "TRELLO_TOOD_LIST_ID"
   "TRELLO_DOING_LIST_ID"
-  "TAVILY_API_KEY"
+  "SERPAPI_API_KEY"
 )
 
 echo "Checking required environment variables..."
