@@ -1,0 +1,24 @@
+services:
+  pro-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # Mount the source code for development
+      - ./src:/app/src
+      # Mount the output files directory
+      - ./output:/app/output
+    env_file:
+      - .env
+    environment:
+      # Override or add any environment variables here
+      - MODEL=${MODEL:-gpt-4o}
+      # Enable Python unbuffered output for better logging
+      - PYTHONUNBUFFERED=1
+    # The default command is "run", but you can override it
+    # command: train 5 training_data.json
+    # Or use different commands when running:
+    # docker-compose run pro-tools train 5 training_data.json
+    # Ensure container logs are displayed
+    tty: true
+    stdin_open: true
