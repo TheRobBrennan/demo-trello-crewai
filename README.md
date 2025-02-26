@@ -6,6 +6,15 @@ Welcome to the ProTools Crew project, powered by [crewAI](https://crewai.com). T
 
 This example was originally developed by [Brandon Hancock](https://github.com/bhancockio) as part of our AI Developer Accelerator group in the [noob-vs-pro-tools](https://github.com/bhancockio/noob-vs-pro-tools) repo on GitHub.
 
+## 📋 Getting Started
+
+For a comprehensive step-by-step guide on setting up and using this application, please see the [WALKTHROUGH.md](WALKTHROUGH.md) file. This guide includes:
+
+- Setting up your Trello board with the required structure
+- Obtaining all necessary API keys and credentials
+- Configuring the environment variables
+- Running the application and verifying the results
+
 ## Installation
 
 ### Option 1: Local Installation

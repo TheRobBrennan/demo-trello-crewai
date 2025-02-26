@@ -2,7 +2,16 @@
 import sys
 import warnings
 
-from pro_tools.crew import ProTools
+print("=== Starting pro_tools.main ===")
+
+try:
+    from pro_tools.crew import ProTools
+    print("Successfully imported ProTools")
+except Exception as e:
+    print(f"Error importing ProTools: {str(e)}")
+    import traceback
+    print(traceback.format_exc())
+    sys.exit(1)
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -16,7 +25,19 @@ def run():
     """
     Run the crew.
     """
-    ProTools().crew().kickoff()
+    try:
+        print("\nInitializing ProTools...")
+        pro_tools = ProTools()
+        print("Creating crew...")
+        crew = pro_tools.crew()
+        print("Starting crew execution...")
+        crew.kickoff()
+    except Exception as e:
+        print(f"\nError during execution: {str(e)}")
+        import traceback
+        print("\nFull error trace:")
+        print(traceback.format_exc())
+        sys.exit(1)
 
 
 def train():
@@ -56,3 +77,27 @@ def test():
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
+
+
+if __name__ == "__main__":
+    print("Entering main block")
+    if len(sys.argv) < 2:
+        print("No command provided")
+        sys.exit(1)
+        
+    command = sys.argv[1]
+    print(f"Received command: {command}")
+    
+    if command == "run":
+        print("Starting run command...")
+        run()
+    elif command == "train":
+        train()
+    elif command == "replay":
+        replay()
+    elif command == "test":
+        test()
+    else:
+        print(f"Unknown command: {command}")
+        sys.exit(1)
+

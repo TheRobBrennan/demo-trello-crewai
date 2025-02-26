@@ -15,6 +15,7 @@
   "scripts": {
     "setup": "chmod +x setup-env.sh && ./setup-env.sh",
     "check": "chmod +x check-env.sh && ./check-env.sh",
+    "trello": "chmod +x get-trello-ids.sh && ./get-trello-ids.sh",
     "start": "chmod +x run.sh && ./run.sh",
     "start:detached": "chmod +x run.sh && ./run.sh -d",
     "start:build": "chmod +x run.sh && ./run.sh --build",
