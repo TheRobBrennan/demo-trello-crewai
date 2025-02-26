@@ -75,7 +75,8 @@ class ProTools:
             
         if not cards:
             print("No cards found in the TODO list.")
-            return inputs
+            # Instead of continuing with empty inputs, raise an exception to stop the process
+            raise ValueError("No cards found in the TODO list. Nothing to process.")
             
         inputs["trello_cards"] = cards
         print(f"\nFinal inputs prepared: {inputs}")

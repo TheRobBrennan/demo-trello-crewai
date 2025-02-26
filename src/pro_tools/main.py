@@ -32,6 +32,17 @@ def run():
         crew = pro_tools.crew()
         print("Starting crew execution...")
         crew.kickoff()
+    except ValueError as e:
+        if "No cards found in the TODO list" in str(e):
+            print(f"\nNotice: {str(e)}")
+            print("The application will exit without processing as there are no cards to work on.")
+            sys.exit(0)  # Exit with success code as this is an expected condition
+        else:
+            print(f"\nError during execution: {str(e)}")
+            import traceback
+            print("\nFull error trace:")
+            print(traceback.format_exc())
+            sys.exit(1)
     except Exception as e:
         print(f"\nError during execution: {str(e)}")
         import traceback
